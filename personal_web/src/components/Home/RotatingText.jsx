@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-export default function RotateText() {
+export default function RotateText({ messages, updateSpeed }) {
     const [text, setText] = useState("");
-    const messages = [
-        "A Computer Vision Ethuanist",
-        "A Proud Michigan Wolverine From Ohio",
-        "An Aspiring Software Engineer",
-        "Almost an Aerospace Engineer",
-        "An Epic Minecraft Gamer",
-    ];
+    
 
     const [index, setIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
@@ -29,7 +23,7 @@ export default function RotateText() {
                 } else {
                     // After finishing typing, pause before deleting
                     setIsDeleting(true);
-                    setSpeed(2000);
+                    setSpeed(updateSpeed);
                 }
             } else {
                 // Deleting phase
@@ -44,7 +38,7 @@ export default function RotateText() {
                     // After finishing deleting, pause before next message
                     setIsDeleting(false);
                     setIndex((prevIndex) => (prevIndex + 1) % messages.length);
-                    setSpeed(2000);
+                    setSpeed(500);
                 }
             }
         };
